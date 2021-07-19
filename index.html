@@ -11,7 +11,8 @@
         h1 {color:#fff}
 
         .cursor {position: absolute;
-        top:0; left:0;cursor: none; width:100px; transform: translate(50px, 50px);height:100px; background:red;}
+        top:0; left:0;cursor: none; width:100px; transform: translate(50px, 50px);height:100px; background:red;
+        transition: all .5s ease;}
     </style>
 </head>
 <body>
@@ -27,7 +28,7 @@
         window.onload = function(){
             const h1 = document.getElementsByTagName('h1')[0];
             cursor = document.getElementsByClassName('cursor')[0];
-            window.addEventListener("mousemove",mouseFunc)
+            window.addEventListener("click",mouseFunc)
 
             function mouseFunc(e){
                 x = e.clientX;
@@ -39,16 +40,16 @@
 
             loop();
         }
-        // let i = 0;
-        function loop(){
-            mx += (x - mx) * speed;
-            my += (y - my) * speed;
+         
+        // function loop(){
+        //     mx += (x - mx) * speed;
+        //     my += (y - my) * speed;
 
-            console.log(x, xm);
+        //     console.log(x, xm);
 
-            cursor.style.transform = "translate("+ mx + "px," + my + "px)"
-            window.requestAnimationFrame(loop);
-        }
+        //     cursor.style.transform = "translate("+ mx + "px," + my + "px)"
+        //     window.requestAnimationFrame(loop);
+        // }
     </script>
 </body>
 </html>
