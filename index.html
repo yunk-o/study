@@ -13,7 +13,8 @@
         /* .cursor {position: absolute;
         top:0; left:0;cursor: none; width:100px; transform: translate(50px, 50px);height:100px; background:red;
         transition: all .5s ease;} */
-
+        img {position: absolute;}
+        video {position: absolute;z-index:1}
         .img {z-index:9;width:300px; height:300px; position: absolute; top:50%; left:50%; transform: translate(50px, 50px);}
         .bg {width:100%; height:100vh; position: absolute;}
     </style>
@@ -21,9 +22,18 @@
 <body>
     <!-- <h1>test</h1> -->
     <!-- <div class="cursor"></div> -->
-    <img src="./img/1.png" class="img" alt="">
-    <img src="./img/2.jpg" class="bg" alt="">
+    <!-- <img src="./img/1.png" class="img" alt="">
+    <img src="./img/2.jpg" class="bg" alt=""> -->
+    <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/1-b90e91a4.png">
 
+    <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/2-f3fd6cf5.png">
+    
+    <div class="vod"><video autoplay="" playsinline="" loop="" muted="" src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/videos/3-27c8c3ea.webm"></video></div>
+    
+    <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/4-105dd65b.png">
+    
+    <img src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/images/5-ac49bfdc.png">
+    
 
 
     <script>
@@ -31,30 +41,40 @@
         let y = 0;
         let mx = 0;
         let my = 0;
-        let cursor;
         let speed = 0.009;
-        let img = 0
-        let bg = 0
         window.onload = function(){
             // const h1 = document.getElementsByTagName('h1')[0];
             // cursor = document.getElementsByClassName('cursor')[0];
-            img = document.getElementsByClassName('img')[0];
-            bg = document.getElementsByClassName('bg')[0];
+
+            _imgArr = document.getElementsByTagName("img");
+            // document.querySelector
             window.addEventListener("mousemove",mouseFunc)
 
             function mouseFunc(e){
                 x = (e.clientX - window.innerWidth / 6);
                 y = (e.clientY - window.innerHeight / 6);
 
+                _imgArr[0].style.transform = "translate(" + -(x/3) + "px," + -(y/3) + "px)";
                 // h1.innerHTML = "x : " + x + " xm : " + y
                 // cursor.style.transform = "translate(" + x + "px," + y + "px)"
-                img.style.transform = "translate(" + -(x/3) + "px," + -(y/3) + "px)";
+                // img.style.transform = "translate(" + -(x/3) + "px," + -(y/3) + "px)";
                 // bg.style.transform = "translate(" + (x/10) + "px," + (y/10) + "px)"
             }
 
             loop();
         }
-         
+        
+        function loop(){
+            mx += (x - mx) * speed;
+            my += (y - my) * speed;
+
+            _imgArr[0].style.transform = "translate("+ -(x/10) + "px," + -(y/10) + "px)"
+            _imgArr[1].style.transform = "translate("+ -(x/3) + "px," + -(y/3) + "px)"
+            _imgArr[2].style.transform = "translate("+ -(x/2) + "px," + -(y/2) + "px)"
+            _imgArr[3].style.transform = "translate("+ -(x/1) + "px," + -(y/1) + "px)"
+
+            window.requestAnimationFrame(loop)
+        }
         // function loop(){
         //     mx += (x - mx) * speed;
         //     my += (y - my) * speed;
