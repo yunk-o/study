@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html, h1, h2, p, span{margin:0 ;padding:0}
+        .body{height: 10000px; background: linear-gradient(150deg,red,orange,yellow,green,skyblue,blue,purple);}
+        h1{color:#fff;}
+        .progress {width:100%; position: fixed;top:0;left:0;height:5px;background: #000;z-index: 10;}
+        .bar {position: absolute; width:50%;height:5px;top:0;left:0; background: yellow;}
+    </style>
+</head>
+<body>
+    <div class="body">
+        <h1>title</h1>
+        <div class="progress">
+            <span class="bar"></span>
+        </div>
+    </div>
+    <script>
+        let scroll = 0;
+        let bar;
+
+        window.onload = function(){
+            bar = document.getElementsByClassName("bar")[0];
+        }
+        window.addEventListener('scroll', function(){
+            scroll = document.documentElement.scrollTop;
+            // console.log("메롱"+scroll)
+            let per = Math.ceil(scroll / (document.body.scrollHeight  - window.outerHeight) * 100)
+            console.log(per);
+
+            bar.style.width = per + "%"
+        })
+    </script>
+</body>
+</html>
